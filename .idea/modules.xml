@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/number-checker.iml" filepath="$PROJECT_DIR$/number-checker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/number-checker_main.iml" filepath="$PROJECT_DIR$/.idea/modules/number-checker_main.iml" group="number-checker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/number-checker_test.iml" filepath="$PROJECT_DIR$/.idea/modules/number-checker_test.iml" group="number-checker" />
+    </modules>
+  </component>
+</project>
