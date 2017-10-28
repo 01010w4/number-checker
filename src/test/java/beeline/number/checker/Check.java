@@ -83,8 +83,7 @@ public class Check {
     for (WebElement element : freeNumbers) {
       String freeNumberElement = element.getText();
       String freeNumberForChecking = (freeNumberElement.replaceAll("\\s+", "")).substring(5);
-      //System.out.println(freeNumberElement); Debugger for catching non-filled numbers
-      //System.out.println(freeNumberForChecking); Debugger for catching non-filled numbers
+      System.out.println(freeNumberElement);
       Assert.assertEquals((sequenceChecker.findMask(mobNo, freeNumberForChecking)), true);
     }
 
@@ -92,7 +91,7 @@ public class Check {
     List<WebElement> beaElement = wd.findElements(By.className("bea"));
     for (WebElement element2 : beaElement) {
       Assert.assertNotNull(element2.getText());
-      //System.out.println(element2.getText()); Debugger for catching non-filled numbers
+      System.out.println(element2.getText());
     }
 
     // Price Existence Cheking
@@ -100,7 +99,7 @@ public class Check {
     for (WebElement element: price){
       String priceExistenceChecking = element.getText().replace("Цена:", "").replace("тенге", "").trim();
       Assert.assertNotNull(priceExistenceChecking);
-     // System.out.println(priceExistenceChecking); Debugger for catching non-filled numbers
+      System.out.println(priceExistenceChecking);
     }
 
 
