@@ -2,46 +2,16 @@ package beeline.number.checker;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
-  protected static ChromeDriverService service;
-  ChromeDriver wd;
-
-  @BeforeClass
-  // chromedriver service.start
-  public static void createAndStartService() throws IOException {
-    service = new ChromeDriverService.Builder()
-            .usingDriverExecutable(new File("C://chrm/chromedriver.exe"))
-            .usingAnyFreePort()
-            .build();
-    System.setProperty("webdriver.chrome.driver", "C://chrm/chromedriver.exe");
-    try {
-      service.start();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  @AfterClass
-  // chromedriver service.stop
-  public static void createAndStopService() {
-    service.stop();
-  }
+public class TestBase extends ApplicationManager{
 
   @BeforeMethod
   public void setUp() throws Exception {
@@ -107,19 +77,6 @@ public class TestBase {
     wd.findElement(By.id("wannamask2")).click();
     wd.findElement(By.id("wannamask2")).sendKeys(mobNo);
     wd.findElement(By.xpath("//div[@id='tabs-m']/div/div/div[3]/a/span[1]")).click();
-  }
-
-  protected void init() {
-    wd.get("https://nomer.beeline.kz/ru/Numbers");
-  }
-
-  public static boolean isAlertPresent(ChromeDriver wd) {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
   }
 
 
