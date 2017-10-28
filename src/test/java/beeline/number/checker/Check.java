@@ -5,10 +5,7 @@
 
 package beeline.number.checker;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,6 +16,7 @@ import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.concurrent.TimeUnit;
 
 public class Check {
@@ -78,8 +76,29 @@ public class Check {
             wd.findElement(By.id("wannamask2")).click();
             wd.findElement(By.id("wannamask2")).sendKeys(mobNo);
             wd.findElement(By.xpath("//div[@id='tabs-m']/div/div/div[3]/a/span[1]")).click();
+            waitForJSandJQueryToLoad();
             wd.findElement(By.linkText("Показать еще")).click();
-            Assert.assertEquals((sequenceChecker.findMask(mobNo, "0010208")), true);
+
+            // Free Numbers checking
+            String freeNumbers = wd.findElement(By.className("num")).getText();
+            String freeNumberForChecking = (freeNumbers.replaceAll("\\s+","")).substring(5);
+            Assert.assertEquals((sequenceChecker.findMask(mobNo, freeNumberForChecking)), true);
+
+            // Bea Existence Checking
+            //String bea = wd.findElement(By.className("num")).getText();
+
+            // Price Existence Cheking
+            String price = wd.findElement(By.cssSelector(".prc")).getText();
+            String priceExistenceChecking = price.replace("Цена:", "").replace("тенге", "").trim();
+
+            // Debugger for catching non-filled numbers
+            System.out.println(freeNumbers);                // Free number //
+            System.out.println(freeNumberForChecking);      //  Free number for Checking (trimmed)
+            System.out.println(priceExistenceChecking);     // Trimmed Price
+            System.out.println("________________________"); // Next Free number
+
+
+
         }
 
         // AjaxWaiter
