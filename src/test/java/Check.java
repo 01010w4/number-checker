@@ -59,6 +59,7 @@ public class Check {
             SequenceChecker sequenceChecker = new SequenceChecker();
 //          System.setProperty("webdriver.chrome.driver", "C://chrm/chromedriver.exe");
             wd.get("https://nomer.beeline.kz/ru/Numbers");
+            waitForJSandJQueryToLoad();
             wd.findElement(By.id("totabs-xx")).click();
             wd.findElement(By.xpath("//div[@id='tabs-m']/div/div/div[1]/ul/li/span")).click();
             wd.findElement(By.xpath("//div[@id='tabs-m']//a[.='776']")).click();
@@ -66,7 +67,6 @@ public class Check {
             wd.findElement(By.id("wannamask2")).clear();
             wd.findElement(By.id("wannamask2")).click();
             wd.findElement(By.id("wannamask2")).sendKeys(mobNo);
-
             wd.findElement(By.xpath("//div[@id='tabs-m']/div/div/div[3]/a/span[1]")).click();
             wd.findElement(By.linkText("Показать еще")).click();
             Assert.assertEquals((sequenceChecker.findMask(mobNo, "0010208")), true);
