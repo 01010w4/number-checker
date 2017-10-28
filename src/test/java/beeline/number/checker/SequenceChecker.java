@@ -1,3 +1,9 @@
+/**
+ *
+ * @author zarif.arzimetov
+ */
+
+package beeline.number.checker;
 
 public class SequenceChecker {
     public boolean findMask(String mask, String number) {

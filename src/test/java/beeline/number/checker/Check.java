@@ -1,3 +1,10 @@
+/**
+ *
+ * @author zarif.arzimetov
+ */
+
+package beeline.number.checker;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -20,6 +27,7 @@ public class Check {
     ChromeDriver wd;
 
     @BeforeClass
+    // chromedriver service.start
     public static void createAndStartService() throws IOException {
         service = new ChromeDriverService.Builder()
                 .usingDriverExecutable(new File("C://chrm/chromedriver.exe"))
@@ -34,6 +42,7 @@ public class Check {
     }
 
     @AfterClass
+    // chromedriver service.stop
     public static void createAndStopService() {
         service.stop();
     }
@@ -54,6 +63,7 @@ public class Check {
         }
 
         @Test
+        // TestCase
         public void Check() {
             String mobNo = "010208";
             SequenceChecker sequenceChecker = new SequenceChecker();
@@ -72,6 +82,7 @@ public class Check {
             Assert.assertEquals((sequenceChecker.findMask(mobNo, "0010208")), true);
         }
 
+        // AjaxWaiter
     public boolean waitForJSandJQueryToLoad() {
 
         WebDriverWait wait = new WebDriverWait(wd, 30);
