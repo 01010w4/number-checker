@@ -1,8 +1,12 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.io.File;
@@ -13,7 +17,6 @@ public class Check {
 
     private static ChromeDriverService service;
     ChromeDriver wd;
-    SequenceCheck z = new SequenceCheck();
 
     @BeforeClass
     public static void createAndStartService() throws IOException {
@@ -29,6 +32,19 @@ public class Check {
         }
     }
 
+    @AfterClass
+    public static void createAndStopService() {
+        service.stop();
+    }
+
+        public static boolean isAlertPresent(FirefoxDriver wd) {
+            try {
+                wd.switchTo().alert();
+                return true;
+            } catch (NoAlertPresentException e) {
+                return false;
+            }
+        }
 
         @BeforeMethod
         public void setUp() throws Exception {
@@ -51,27 +67,12 @@ public class Check {
 
             wd.findElement(By.xpath("//div[@id='tabs-m']/div/div/div[3]/a/span[1]")).click();
             wd.findElement(By.linkText("Показать еще")).click();
-            z.findMask("mobNo", "1234511");
         }
 
         @AfterMethod
         public void tearDown() {
             wd.quit();
         }
-
-    @AfterClass
-    public static void createAndStopService() {
-        service.stop();
-    }
-
-    public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
 
     }
 
