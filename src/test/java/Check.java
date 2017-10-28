@@ -55,6 +55,7 @@ public class Check {
         @Test
         public void Check() {
             String mobNo = "010208";
+            SequenceChecker sequenceChecker = new SequenceChecker();
 //          System.setProperty("webdriver.chrome.driver", "C://chrm/chromedriver.exe");
             wd.get("https://nomer.beeline.kz/ru/Numbers");
             wd.findElement(By.id("totabs-xx")).click();
@@ -67,6 +68,7 @@ public class Check {
 
             wd.findElement(By.xpath("//div[@id='tabs-m']/div/div/div[3]/a/span[1]")).click();
             wd.findElement(By.linkText("Показать еще")).click();
+            System.out.println(sequenceChecker.findMask(mobNo, "0010208"));
         }
 
         @AfterMethod
