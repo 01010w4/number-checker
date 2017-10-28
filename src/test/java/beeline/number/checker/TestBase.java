@@ -22,15 +22,6 @@ public class TestBase {
   protected static ChromeDriverService service;
   ChromeDriver wd;
 
-  public static boolean isAlertPresent(FirefoxDriver wd) {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
   @BeforeClass
   // chromedriver service.start
   public static void createAndStartService() throws IOException {
@@ -58,6 +49,10 @@ public class TestBase {
     wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
   }
 
+  @AfterMethod
+  public void tearDown() {
+    wd.quit();
+  }
   // AjaxWaiter
   public boolean waitForJSandJQueryToLoad() {
 
@@ -97,10 +92,7 @@ public class TestBase {
     return wait.until(jQueryLoad) && wait.until(jsLoad);
   }
 
-  @AfterMethod
-  public void tearDown() {
-    wd.quit();
-  }
+
 
   protected void showAllOptions() {
     wd.findElement(By.linkText("Показать еще")).click();
@@ -120,4 +112,15 @@ public class TestBase {
   protected void init() {
     wd.get("https://nomer.beeline.kz/ru/Numbers");
   }
+
+  public static boolean isAlertPresent(ChromeDriver wd) {
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+
 }

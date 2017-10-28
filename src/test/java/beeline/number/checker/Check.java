@@ -4,13 +4,11 @@
 
 package beeline.number.checker;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class Check extends TestBase{

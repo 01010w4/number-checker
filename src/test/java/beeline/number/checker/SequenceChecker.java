@@ -28,9 +28,8 @@ public class SequenceChecker {
             for(int j = 0; j < mask.length(); j++) {
                 used[mask.charAt(j)] = false;
             }
-        }        
+        }
         return false;
     }
-
 
 }
