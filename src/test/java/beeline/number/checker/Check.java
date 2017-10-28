@@ -16,7 +16,7 @@ public class Check extends TestBase{
   @Test
   // TestCase
   public void Check() {
-    String mobNo = "010308";
+    String mobNo = "AAABBB";
     SequenceChecker sequenceChecker = new SequenceChecker();
 //          System.setProperty("webdriver.chrome.driver", "C://chrm/chromedriver.exe");
     init();
