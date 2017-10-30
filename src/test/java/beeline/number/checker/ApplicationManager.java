@@ -1,3 +1,7 @@
+/**
+ * @author zarif.arzimetov
+ */
+
 package beeline.number.checker;
 
 import org.openqa.selenium.NoAlertPresentException;

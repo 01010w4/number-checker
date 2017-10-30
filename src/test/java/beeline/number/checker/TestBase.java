@@ -1,14 +1,21 @@
+/**
+ * @author zarif.arzimetov
+ */
+
 package beeline.number.checker;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase extends ApplicationManager{
@@ -16,7 +23,7 @@ public class TestBase extends ApplicationManager{
   @BeforeMethod
   public void setUp() throws Exception {
     wd = new ChromeDriver();
-    wd.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 
   @AfterMethod
@@ -80,4 +87,84 @@ public class TestBase extends ApplicationManager{
   }
 
 
+  public void clickAllOptions() {
+    boolean a = false;
+    boolean b = isElementPresent(By.xpath(".//*[@id='loadMoreTrigger']/span[1]"));
+    while (a!=b){
+      try {
+        click(By.xpath(".//*[@id='loadMoreTrigger']/span[1]"));
+      } catch (Exception ex){
+        return;
+      }
+
+    }
+
+  }
+
+  private void click(By locator) {
+    wd.findElement(locator).click();
+  }
+
+  private boolean isElementPresent(By locator) {
+
+      try {
+        wd.findElement(locator);
+        return true;
+      } catch (Exception ex) {
+        return false;
+      }
+    }
+
+  //Price Existence Cheking
+  protected void priceExistenceChecking() {
+    List<WebElement> price = wd.findElements(By.cssSelector(".prc"));
+    for (WebElement element: price){
+      String priceExistenceChecking = element.getText().replace("Цена:", "").replace("тенге", "").trim();
+      Assert.assertNotNull(priceExistenceChecking);
+     // System.out.println(priceExistenceChecking); //Debug
+    }
+  }
+  // Bea Existence Checking
+  protected void beaExistenceChecking() {
+    List<WebElement> beaElement = wd.findElements(By.className("bea"));
+    for (WebElement element2 : beaElement) {
+      Assert.assertNotNull(element2.getText());
+     // System.out.println(element2.getText()); // Debug
+    }
+  }
+
+  // Free Numbers checking
+  protected void freeNumbersChecking(String mobNo, SequenceChecker sequenceChecker) {
+    String NoSuchNumbers = isElementNull(By.xpath("html/body/div[4]/div[2]/div[6]/div[3]/div")).getText();
+    int length = NoSuchNumbers.length();
+
+    if (length > 0) {
+      System.out.println("No such numbers");
+    } else {
+      System.out.println("**** Sequence checking started **** ");
+      System.out.println("          ／人 ⌒ ‿‿ ⌒ 人＼          ");
+      List<WebElement> freeNumbers = wd.findElements(By.className("num"));
+      for (WebElement element : freeNumbers) {
+        String freeNumberElement = element.getText();
+        String freeNumberForChecking = (freeNumberElement.replaceAll("\\s+", "")).substring(5);
+       // System.out.println(freeNumberForChecking); //Debug
+        Assert.assertEquals((sequenceChecker.findMask(mobNo, freeNumberForChecking)), true);
+
+      }
+
+      // Bea Existence Checking
+      beaExistenceChecking();
+
+      //Price Existence Cheking
+      priceExistenceChecking();
+    }
+  }
+
+  private WebElement isElementNull(By locator) {
+    try {
+      return  wd.findElement(locator);
+    } catch (Exception ex) {
+      return null;
+    }
+  }
 }
