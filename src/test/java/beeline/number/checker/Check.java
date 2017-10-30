@@ -15,8 +15,8 @@ public class Check extends TestBase{
     String mobNo = "AABBB";
 
     /**
-     *@autor zarif.arzimetov
-     * Checked on next mobNo values
+     *@author zarif.arzimetov
+     * Tested on next mobNo values
      * 010208, 010288, AABBB, ABCD, AAABBBB
      */
 
@@ -30,12 +30,6 @@ public class Check extends TestBase{
 
     // Free Numbers checking
     freeNumbersChecking(mobNo, sequenceChecker);
-
-    // Bea Existence Checking
-   // beaExistenceChecking();
-
-    // Price Existence Cheking
-   // priceExistenceChecking();
   }
 
 }

@@ -139,10 +139,10 @@ public class TestBase extends ApplicationManager{
     int length = NoSuchNumbers.length();
 
     if (length > 0) {
-      System.out.println("No such numbers");
+      System.out.println("(✖╭╮✖) NO SUCH FREE numbers");
     } else {
-      System.out.println("**** Sequence checking started **** ");
-      System.out.println("          ／人 ⌒ ‿‿ ⌒ 人＼          ");
+      System.out.println("**** Sequence checking is started **** ");
+      System.out.println("          (-(-_(-_-)_-)-)          ");
       List<WebElement> freeNumbers = wd.findElements(By.className("num"));
       for (WebElement element : freeNumbers) {
         String freeNumberElement = element.getText();
@@ -157,6 +157,9 @@ public class TestBase extends ApplicationManager{
 
       //Price Existence Cheking
       priceExistenceChecking();
+
+      System.out.println("**** Sequence checking is ended ****");
+      System.out.println("             '(◣_◢)'               ");
     }
   }
 
