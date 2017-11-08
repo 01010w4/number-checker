@@ -42,7 +42,7 @@ public class TestBase extends ApplicationManager{
       }
 
       @Override
-      public Boolean apply(WebDriver driver) {
+      public Boolean apply(WebDriver wd) {
         try {
           return ((Long) ((JavascriptExecutor) getDriver()).executeScript("return jQuery.active") == 0);
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class TestBase extends ApplicationManager{
 
 
       @Override
-      public Boolean apply(WebDriver driver) {
+      public Boolean apply(WebDriver wd) {
         return ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
                 .toString().equals("complete");
       }

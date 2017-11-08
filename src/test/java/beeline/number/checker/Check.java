@@ -23,9 +23,9 @@ public class Check extends TestBase{
     SequenceChecker sequenceChecker = new SequenceChecker();
 //  System.setProperty("webdriver.chrome.driver", "C://chrm/chromedriver.exe");
     init(); // initialization
-    waitForJSandJQueryToLoad();
+    //waitForJSandJQueryToLoad();
     userActions(mobNo); // click "Другие" button, choose prefix, enter preferred numNo and Enter "Search"
-    waitForJSandJQueryToLoad();
+   // waitForJSandJQueryToLoad();
     clickAllOptions(); // show All Options
 
     // Free Numbers checking
