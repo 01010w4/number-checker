@@ -14,8 +14,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class ApplicationManager {
-  protected static ChromeDriverService service;
-  ChromeDriver wd;
+  static ChromeDriverService service;
+  protected ChromeDriver wd;
 
   @BeforeClass
   // chromedriver service.start
